@@ -1,0 +1,137 @@
+<head>
+  <meta charset="UTF-8" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: "Open Sans", sans-serif;
+      color: #484a46;
+      padding: 0;
+      margin: 0;
+    }
+    section {
+      padding: 30px 20px;
+    }
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+    header,
+    footer {
+      background-color: #484a46;
+      color: white;
+      position: relative;
+      padding: 10px 20px;
+    }
+/*     header:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+      height: 2px;
+      background-color: #484a46;
+    } */
+    footer {
+      text-align: center;
+    }
+/*     footer:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20px;
+      right: 20px;
+      height: 2px;
+      background-color: #484a46;
+    } */
+    .bar-charts__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .basic-info {
+      padding: 20px;
+      padding-left: 35px;
+      position: relative;
+    }
+    .basic-info--title {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #484a46;
+    }
+    .basic-info--numbers {
+      font-size: 20px;
+    }
+    .icon {
+      font-size: 38px;
+      position: absolute;
+      left: 0;
+      bottom: 30px;
+      font-style: normal;
+      color: darkseagreen;
+    }
+    .arrow {
+      bottom: 36px;
+    }
+    .pie-charts__container {
+      margin-top: 40px;
+    }
+    .pie-charts {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<!-- color: #3b2b25; -->
+<body>
+    <header>
+      <div class="container">
+        <h1>Analýza bytů v ČR z inzerce bezrealitky.cz</h1>
+      </div>
+    </header>
+    <section class="bar-charts__container container">
+      <div>
+        <div class="basic-info">
+          <i class="icon">&#35;</i>
+          <p class="basic-info--title">
+            Celkem bylo analyzováno
+          </p>
+          <p class="basic-info--numbers"><strong>1503 inzerátů</strong></p>
+        </div>
+        <div class="basic-info">
+          <i class="icon arrow">&#8593;</i>
+          <p class="basic-info--title">
+            Nejvyšší průměrná cena za 1m² je v regionu
+          </p>
+          <p class="basic-info--numbers"><strong>PRAHA, 100 000 Kč</strong></p>
+        </div>
+        <div class="basic-info">
+          <i class="icon arrow">&#8595;</i>
+          <p class="basic-info--title">
+            Nejlevněji lze koupit byt v kraji (cena za 1m²)
+          </p>
+          <p class="basic-info--numbers"><strong>ÚSTECKÝ KRAJ, 16 154 Kč</strong></p>
+        </div>
+      </div>
+      <div class="bar-charts">
+        <img src="..\tmp\prumer.png" alt="" />
+      </div>
+    </section>
+
+    <section class="pie-charts__container container">
+      <p style="text-align: center;">
+        Nejvíce bytů je nabízeno v regionu: <strong>Praha</strong>, 47% všech
+        nabídek.<br />Nejčastěji se v tomto regionu prodává byt
+        <strong>2+kk</strong> (35%).
+      </p>
+      <div class="pie-charts">
+        <img src="..\tmp\kraje.png" alt="" />
+        <img src="..\tmp\struktura.png" alt="" />
+      </div>
+    </section>
+
+    <footer>
+      <p>vygenerováno: 24.06.2020 21:33</p>
+    </footer>
+</body>

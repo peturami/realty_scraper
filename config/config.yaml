@@ -1,0 +1,9 @@
+url: https://www.bezrealitky.cz/vypis/nabidka-prodej/
+
+# byt, dum, pozemek, garaz, kancelar, nebytovy-prostor, chata-chalupa
+typ_nemovitosti:
+    - byt
+    - dum
+    
+# generovat report: Y/N
+report: Y

@@ -1,0 +1,78 @@
+ddl:
+  CREATE TABLE IF NOT EXISTS Realty_stg
+  (
+   cena_nemovitosti INTEGER,
+   dispozice_nemovitosti TEXT,
+   odkaz TEXT PRIMARY KEY,
+   region TEXT,
+   rozloha INTEGER,
+   typ_nemovistosti TEXT,
+   datum_stazeni DATE
+  );
+
+
+h_ddl:
+  CREATE TABLE IF NOT EXISTS H_Realty
+  (
+   odkaz TEXT NOT NULL,
+   cena_nemovitosti INTEGER NOT NULL,
+   dispozice_nemovitosti TEXT,
+   region TEXT NOT NULL,
+   rozloha INTEGER NOT NULL,
+   typ_nemovistosti TEXT NOT NULL,
+   start_date DATE NOT NULL,
+   end_date DATE NOT NULL,
+  PRIMARY KEY (odkaz, end_date)
+  );
+
+
+deleted_dml:
+  update H_Realty
+  set end_date = CURRENT_DATE
+  where odkaz not in (
+   select
+    odkaz
+   from Realty_stg )
+  and end_date = '9999-12-31';
+
+
+changed_dml:
+  update H_Realty
+  set end_date = (select Realty_stg.datum_stazeni from Realty_stg where Realty_stg.odkaz = H_Realty.odkaz
+                  and H_Realty.end_date = '9999-12-31' and Realty_stg.cena_nemovitosti <> H_Realty.cena_nemovitosti )
+  where EXISTS (
+  select * from Realty_stg
+  where Realty_stg.odkaz = H_Realty.odkaz and H_Realty.end_date = '9999-12-31'
+   and Realty_stg.cena_nemovitosti <> H_Realty.cena_nemovitosti
+  );
+
+
+new_dml:
+  insert into H_Realty
+  (
+   odkaz,
+   cena_nemovitosti,
+   dispozice_nemovitosti,
+   region,
+   rozloha,
+   typ_nemovistosti,
+   start_date,
+   end_date
+  )
+  select
+   odkaz,
+   cena_nemovitosti,
+   dispozice_nemovitosti,
+   region,
+   rozloha,
+   typ_nemovistosti,
+   datum_stazeni as start_date,
+   '9999-12-31' as end_date
+  from Realty_stg
+  where odkaz not in (
+   select distinct
+    odkaz
+   from H_Realty
+   where end_date = '9999-12-31'
+  );
+
