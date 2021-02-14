@@ -5,10 +5,11 @@ Aplikace pro získávání informací o jednotlivých inzerátech z portálu bez
 
 Struktura repositáře:
 - config: obsahuje základní konfiguraci a sql dotazy pro práci s daty
-- output: vyrenderovaný html report, sqlite db
-- scraper: python scraper
+- output: vyrenderovaný html report, sqlite db a složka tmp pro uložení png pro report
+- python: obsahuje scraper a testy
 - templates: html šablona pro generování reportu
-- tmp: grafy do reportu
 
 
-Aplikace se spouští přes scraper/main.py. 
+Aplikace se spouští přes python/scraper/main.py.
+
+Ukázka vyrenderovaného reportu: [report](http://htmlpreview.github.io/?https://github.com/peturami/realty_scraper/blob/master/output/report.html)
